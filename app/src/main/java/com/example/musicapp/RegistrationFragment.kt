@@ -5,6 +5,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.musicapp.databinding.FragmentRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserInfo
@@ -41,7 +42,8 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                             if (task.isSuccessful) {
                                 val newUser = UserInfoDataClass(binding.etUsername.text.toString(), binding.etEmail2.text.toString(), auth.uid.toString(), "Default Profile URL Placeholder")
                                 myRef.child("users").child(auth.uid.toString()).setValue(newUser)
-                                Toast.makeText(activity, "Registered New User, Move To Image Select Or App, Save Info To Database", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(activity, "Move To Image Select Or App", Toast.LENGTH_SHORT).show()
+                                Navigation.findNavController(view).navigate(R.id.action_registrationFragment_to_setProfilePictureFragment)
                             } else { Toast.makeText(activity, "This User Already Exists (CUSTOM TOAST)", Toast.LENGTH_SHORT).show() }
                         }
                 }

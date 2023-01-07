@@ -9,7 +9,13 @@
         android:id="@+id/registrationFragment"
         android:name="com.example.musicapp.RegistrationFragment"
         android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" />
+        tools:layout="@layout/fragment_registration" >
+        <action
+            android:id="@+id/action_registrationFragment_to_setProfilePictureFragment"
+            app:destination="@id/setProfilePictureFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.musicapp.LoginFragment"
@@ -29,4 +35,9 @@
         android:name="com.example.musicapp.RecoverPasswordFragment"
         android:label="fragment_recover_password"
         tools:layout="@layout/fragment_recover_password" />
+    <fragment
+        android:id="@+id/setProfilePictureFragment"
+        android:name="com.example.musicapp.SetProfilePictureFragment"
+        android:label="fragment_set_profile_picture"
+        tools:layout="@layout/fragment_set_profile_picture" />
 </navigation>
