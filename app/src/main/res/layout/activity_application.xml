@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ApplicationActivity">
 
-    <Button
-        android:id="@+id/btSignOutTemp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Sign Out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bnmBottomNavMenu"
         android:layout_width="match_parent"
@@ -31,7 +22,7 @@
         app:layout_constraintBottom_toTopOf="@+id/bnmBottomNavMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btSignOutTemp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
