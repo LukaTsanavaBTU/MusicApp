@@ -1,6 +1,7 @@
 package com.example.musicapp
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
@@ -25,7 +26,6 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         val sharedPreferences = activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences?.edit()
-        val rememberMeStatus = sharedPreferences!!.getBoolean("RememberMe", false)
 
         binding.btLogin.setOnClickListener {
             if (binding.etEmail.text.toString().length < 6 || !binding.etEmail.text.toString().isValidEmail()) {
@@ -38,7 +38,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             editor?.apply{ putBoolean("RememberMe", binding.cbRememberMe.isChecked) }?.apply()
-                            Toast.makeText(activity, "Move To App, remember me: ${binding.cbRememberMe.isChecked}", Toast.LENGTH_SHORT).show()
+                            val intent = Intent(activity, ApplicationActivity::class.java)
+                            startActivity(intent)
+                            activity?.finish()
                         } else {
                             Toast.makeText(activity, "Incorrect Credentials (CUSTOM TOAST)", Toast.LENGTH_SHORT).show()
                         }
@@ -54,6 +56,20 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_recoverPasswordFragment)
         }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val sharedPreferences = activity?.getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
+        val rememberMeStatus = sharedPreferences!!.getBoolean("RememberMe", false)
+        if (rememberMeStatus) {
+            val currentUser = auth.currentUser
+            if(currentUser != null){
+                val intent = Intent(activity, ApplicationActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
+        }
     }
 
     private fun CharSequence?.isValidEmail() = !isNullOrEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()

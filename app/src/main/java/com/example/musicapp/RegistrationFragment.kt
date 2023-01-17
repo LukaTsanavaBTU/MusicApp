@@ -5,6 +5,7 @@ import android.util.Patterns
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.musicapp.databinding.FragmentRegistrationBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserInfo
@@ -39,9 +40,10 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                     auth.createUserWithEmailAndPassword(binding.etEmail2.text.toString(), binding.etPassword2.text.toString())
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                val newUser = UserInfoDataClass(binding.etUsername.text.toString(), binding.etEmail2.text.toString(), auth.uid.toString(), "Default Profile URL Placeholder")
+                                val newUser = UserInfoDataClass(binding.etUsername.text.toString(), binding.etEmail2.text.toString(), auth.uid.toString(), "https://firebasestorage.googleapis.com/v0/b/musicapp-9c0d8.appspot.com/o/images%2Fdefaultprofile.jpg?alt=media&token=4475a093-5a80-4c64-b8bb-57ef58731c40")
                                 myRef.child("users").child(auth.uid.toString()).setValue(newUser)
-                                Toast.makeText(activity, "Registered New User, Move To Image Select Or App, Save Info To Database", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(activity, "Move To Image Select Or App", Toast.LENGTH_SHORT).show()
+                                Navigation.findNavController(view).navigate(R.id.action_registrationFragment_to_setProfilePictureFragment)
                             } else { Toast.makeText(activity, "This User Already Exists (CUSTOM TOAST)", Toast.LENGTH_SHORT).show() }
                         }
                 }
