@@ -3,6 +3,7 @@ package com.example.musicapp
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.musicapp.databinding.FragmentHomeBinding
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -29,7 +30,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 if (musicPage != null){
                     musicArray.add(0, MusicDataClass(musicPage.username, musicPage.uid, musicPage.musicPath, musicPage.imagePath, musicPage.musicName))
                 }
-                binding.musicViewPager2.adapter = MusicPlayerPageAdapter(musicArray)
+                binding.homeRecyclerView.layoutManager = LinearLayoutManager(activity)
+                binding.homeRecyclerView.adapter = MusicRecyclerAdapter(musicArray)
+
             }
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
             }

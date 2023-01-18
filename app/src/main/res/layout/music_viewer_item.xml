@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp">
+
+    <ImageView
+        android:id="@+id/rvSongArt"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/loading_transparent" />
+
+    <TextView
+        android:id="@+id/rvSongTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:ems="10"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="10sp"
+        app:autoSizeMaxTextSize="20sp"
+        app:autoSizeStepGranularity="2sp"
+        android:maxLines="1"
+        app:layout_constraintStart_toEndOf="@+id/rvSongArt"
+        app:layout_constraintTop_toTopOf="parent"
+        android:gravity="left"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="10dp"/>
+
+
+    <TextView
+        android:id="@+id/rvSongUploader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:ems="8"
+        app:autoSizeTextType="uniform"
+        app:autoSizeMinTextSize="6sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeStepGranularity="2sp"
+        android:maxLines="1"
+        app:layout_constraintStart_toEndOf="@+id/rvSongArt"
+        app:layout_constraintTop_toBottomOf="@+id/rvSongTitle"
+        android:gravity="left"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="5dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
