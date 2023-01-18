@@ -14,7 +14,13 @@
         android:id="@+id/profileFragment"
         android:name="com.example.musicapp.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_uploadMusicFragment"
+            app:destination="@id/uploadMusicFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.musicapp.SettingsFragment"
@@ -31,4 +37,9 @@
         android:name="com.example.musicapp.ChangeProfilePictureFragment"
         android:label="ChangeProfilePictureFragment"
         tools:layout="@layout/fragment_change_profile_picture"/>
+    <fragment
+        android:id="@+id/uploadMusicFragment"
+        android:name="com.example.musicapp.UploadMusicFragment"
+        android:label="UploadMusicFragment"
+        tools:layout="@layout/fragment_upload_music"/>
 </navigation>

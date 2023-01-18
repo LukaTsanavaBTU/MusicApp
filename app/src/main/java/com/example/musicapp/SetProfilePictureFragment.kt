@@ -106,9 +106,27 @@ class SetProfilePictureFragment : Fragment(R.layout.fragment_set_profile_picture
         }
 
         binding.tvSkip.setOnClickListener {
-            val intent = Intent(activity, ApplicationActivity::class.java)
-            startActivity(intent)
-            activity?.finish()
+
+            Glide.with(this)
+                .load(R.drawable.defaultprofile)
+                .into(binding.ivUserProfilePictureHidden)
+
+            val imageRef = storageRef.child("images/${auth.uid}.jpg")
+            val bitmap = getBitmapFromView(binding.ivUserProfilePictureHidden)
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+            val data = baos.toByteArray()
+
+            var uploadTask = imageRef.putBytes(data)
+            uploadTask.addOnFailureListener {
+                Toast.makeText(activity, "Check Your Internet Connection", Toast.LENGTH_SHORT).show()
+            }
+            uploadTask.addOnSuccessListener {
+                myRef.child("users").child(auth.uid.toString()).child("profilePhoto").setValue("images/${auth.uid}.jpg")
+                val intent = Intent(activity, ApplicationActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
         }
 
         }
