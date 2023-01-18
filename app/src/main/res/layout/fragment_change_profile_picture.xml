@@ -51,8 +51,8 @@
 
     <ImageView
         android:id="@+id/ivUserProfilePictureHiddenCg"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         app:layout_constraintBottom_toTopOf="@+id/btUploadPictureCg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

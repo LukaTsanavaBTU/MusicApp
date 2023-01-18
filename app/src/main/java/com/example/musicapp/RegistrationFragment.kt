@@ -40,7 +40,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                     auth.createUserWithEmailAndPassword(binding.etEmail2.text.toString(), binding.etPassword2.text.toString())
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
-                                val newUser = UserInfoDataClass(binding.etUsername.text.toString(), binding.etEmail2.text.toString(), auth.uid.toString(), "https://firebasestorage.googleapis.com/v0/b/musicapp-9c0d8.appspot.com/o/images%2Fdefaultprofile.jpg?alt=media&token=4475a093-5a80-4c64-b8bb-57ef58731c40")
+                                val newUser = UserInfoDataClass(binding.etUsername.text.toString(), binding.etEmail2.text.toString(), auth.uid.toString(), "images/default.jpg")
                                 myRef.child("users").child(auth.uid.toString()).setValue(newUser)
                                 Toast.makeText(activity, "Move To Image Select Or App", Toast.LENGTH_SHORT).show()
                                 Navigation.findNavController(view).navigate(R.id.action_registrationFragment_to_setProfilePictureFragment)

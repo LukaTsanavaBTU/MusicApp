@@ -45,30 +45,26 @@ class ChangeProfilePictureFragment : Fragment(R.layout.fragment_change_profile_p
         auth = Firebase.auth
         val database = Firebase.database("https://musicapp-9c0d8-default-rtdb.europe-west1.firebasedatabase.app/")
         val myRef = database.reference
-        var storageRef = Firebase.storage.reference
+        val storageRef = Firebase.storage.reference
 
 
-//        val profilePicListener = myRef.child("users").child(auth.uid.toString())
-//            .child("profilePhoto").addValueEventListener(object: ValueEventListener{
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    val defaultProfilePhoto = snapshot.value.toString()
-//                    Toast.makeText(activity, defaultProfilePhoto.toString(), Toast.LENGTH_SHORT).show()
-//
-//
-                    Glide.with(requireParentFragment())
-                        .load(myRef.child("images/${auth.currentUser?.uid}").get())
-                        .circleCrop()
-                        .into(binding.ivUserProfilePictureCg)
+        Glide.with(requireParentFragment())
+            .load(R.drawable.loading_transparent)
+            .circleCrop()
+            .into(binding.ivUserProfilePictureCg)
 
-                    Glide.with(requireParentFragment())
-                        .load(myRef.child("images/${auth.currentUser?.uid}").get())
-                        .into(binding.ivUserProfilePictureHiddenCg)
-//
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                }
-//            })
+
+        storageRef.child("images/${auth.currentUser?.uid}.jpg").downloadUrl.addOnSuccessListener {
+            Glide.with(requireParentFragment())
+                .load(it)
+                .circleCrop()
+                .into(binding.ivUserProfilePictureCg)
+
+            Glide.with(requireParentFragment())
+                .load(it)
+                .into(binding.ivUserProfilePictureHiddenCg)
+
+        }
 
 
         binding.btUploadPictureCg.setOnClickListener {
@@ -83,8 +79,6 @@ class ChangeProfilePictureFragment : Fragment(R.layout.fragment_change_profile_p
             }
         }
 
-        // set up cloud storage authentication rules
-
 
         binding.btConfirmCg.setOnClickListener {
             if (binding.ivUserProfilePictureCg.drawable != null && imageSet) {
@@ -94,7 +88,7 @@ class ChangeProfilePictureFragment : Fragment(R.layout.fragment_change_profile_p
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
                 val data = baos.toByteArray()
 
-                var uploadTask = imageRef.putBytes(data)
+                val uploadTask = imageRef.putBytes(data)
                 uploadTask.addOnFailureListener {
                     Toast.makeText(activity, "An Error Has Occurred, Try a Different Image (CUSTOM TOAST)", Toast.LENGTH_SHORT).show()
                 }

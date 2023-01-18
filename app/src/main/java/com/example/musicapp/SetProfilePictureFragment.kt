@@ -56,28 +56,6 @@ class SetProfilePictureFragment : Fragment(R.layout.fragment_set_profile_picture
         var storageRef = Firebase.storage.reference
 
 
-//        val profilePicListener = myRef.child("users").child(auth.uid.toString())
-//            .child("profilePhoto").addValueEventListener(object: ValueEventListener{
-//                override fun onDataChange(snapshot: DataSnapshot) {
-//                    val defaultProfilePhoto = snapshot.value.toString()
-//                    Toast.makeText(activity, defaultProfilePhoto.toString(), Toast.LENGTH_SHORT).show()
-//
-//
-//                    Glide.with(requireParentFragment())
-//                        .load(defaultProfilePhoto)
-//                        .circleCrop()
-//                        .into(binding.ivUserProfilePicture)
-//
-//                    Glide.with(requireParentFragment())
-//                        .load(defaultProfilePhoto)
-//                        .into(binding.ivUserProfilePictureHidden)
-//
-//                }
-//
-//                override fun onCancelled(error: DatabaseError) {
-//                }
-//            })
-
 
         //make placeholder image and draw it onto imageview !!!
 
@@ -133,8 +111,6 @@ class SetProfilePictureFragment : Fragment(R.layout.fragment_set_profile_picture
             activity?.finish()
         }
 
-        // if user presses skip proceed to app activity (every user should already have generic profile pic
-        // url set after registration)
         }
 
     private fun getBitmapFromView(view: View): Bitmap {

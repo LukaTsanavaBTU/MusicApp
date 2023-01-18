@@ -41,6 +41,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         }
 
         binding.btChangeProfilePicture.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_settingsFragment_to_changeProfilePictureFragment)
 
         }
 

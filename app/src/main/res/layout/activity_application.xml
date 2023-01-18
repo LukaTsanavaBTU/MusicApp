@@ -15,14 +15,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottomnavigation_menu" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2"
-        android:layout_width="match_parent"
+    <fragment
+        android:id="@+id/ncApplication"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="0dp"
         android:layout_height="0dp"
+        app:defaultNavHost="true"
         app:layout_constraintBottom_toTopOf="@+id/bnmBottomNavMenu"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navGraph="@navigation/mainapp_nav" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
