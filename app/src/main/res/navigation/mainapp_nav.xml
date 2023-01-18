@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.musicapp.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/music_item" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.example.musicapp.ProfileFragment"
