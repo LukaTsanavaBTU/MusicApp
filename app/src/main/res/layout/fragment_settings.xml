@@ -3,35 +3,74 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/c1">
 
     <Button
         android:id="@+id/btChangePassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change Password"
+        android:textColor="@color/c4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"/>
+        app:layout_constraintVertical_bias="0.4"
+        android:backgroundTint="@color/c2"/>
 
     <Button
         android:id="@+id/btSignOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/c2"
         android:text="Sign Out"
+        android:textColor="@color/c4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btChangePassword" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView4"
+        android:layout_marginTop="40dp"/>
 
     <Button
         android:id="@+id/btChangeProfilePicture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/c2"
         android:text="Change Picture"
-        app:layout_constraintBottom_toTopOf="@+id/btChangePassword"
+        android:textColor="@color/c4"
+        app:layout_constraintBottom_toTopOf="@+id/imageView6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btChangePassword"
+        app:srcCompat="@drawable/ic_baseline_lock_reset_24"
+        app:tint="@color/c4"/>
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btSignOut"
+        app:srcCompat="@drawable/ic_baseline_logout_24"
+        app:tint="@color/c4"/>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/btChangePassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24"
+        android:layout_marginBottom="40dp"
+        app:tint="@color/c4"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

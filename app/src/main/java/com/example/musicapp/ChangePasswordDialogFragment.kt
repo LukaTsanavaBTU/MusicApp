@@ -28,7 +28,6 @@ class ChangePasswordDialogFragment : DialogFragment() {
             val tvCancel = view.findViewById<TextView>(R.id.tvDialogCancel)
 
             builder.setView(view)
-                .setMessage("Change Password")
 
                 tvContinue.setOnClickListener {
                     if (etCurrent.text.toString().length < 6) {

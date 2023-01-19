@@ -8,6 +8,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
@@ -43,15 +44,15 @@ class MusicItemFragment : Fragment(R.layout.fragment_music_item) {
 
         val textViewUsername: TextView = view.findViewById(R.id.textViewUsername)
         val seekbar: SeekBar = view.findViewById(R.id.seekbar)
-        val playButton: Button = view.findViewById(R.id.play)
+        val playButton: ImageButton = view.findViewById(R.id.play)
         val name: TextView = view.findViewById(R.id.textView)
         val photo: ImageView = view.findViewById(R.id.imageView)
         val playedTime: TextView = view.findViewById(R.id.playedTime)
         val remainingTime: TextView = view.findViewById(R.id.leftTime)
-        val preButton5: Button = view.findViewById(R.id.previous5)
-        val nxtButton5: Button = view.findViewById(R.id.next5)
-        val preButton10: Button = view.findViewById(R.id.previous10)
-        val nxtButton10: Button = view.findViewById(R.id.next10)
+        val preButton5: ImageButton = view.findViewById(R.id.previous5)
+        val nxtButton5: ImageButton = view.findViewById(R.id.next5)
+        val preButton10: ImageButton = view.findViewById(R.id.previous10)
+        val nxtButton10: ImageButton = view.findViewById(R.id.next10)
         val volumeSeekBar: SeekBar = view.findViewById(R.id.seekBar)
         val highVolumeImage: ImageView = view.findViewById(R.id.imageView3)
 

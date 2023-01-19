@@ -6,14 +6,17 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager.widget.ViewPager
+import com.bumptech.glide.Glide
 import com.example.musicapp.databinding.FragmentProfileBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class ProfileFragment : Fragment(R.layout.fragment_profile) {
@@ -28,6 +31,23 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         val database = Firebase.database("https://musicapp-f92ec-default-rtdb.firebaseio.com/")
         val myRef = database.reference
         auth = Firebase.auth
+        val storageRef = Firebase.storage.reference
+
+
+
+        myRef.child("users").child(auth.currentUser?.uid.toString()).addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                binding.tvProfileName.text = snapshot.child("username").value.toString()
+            }
+            override fun onCancelled(error: DatabaseError) {
+            }
+        })
+
+        storageRef.child("images/${auth.currentUser?.uid}.jpg").downloadUrl.addOnSuccessListener {
+            Glide.with(this).load(it).circleCrop().into(binding.ivProfileProfile)
+        }
+
+
 
         binding.btUploadMusic.setOnClickListener {
             Navigation.findNavController(view).navigate(R.id.uploadMusicFragment)

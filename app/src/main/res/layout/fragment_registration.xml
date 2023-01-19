@@ -12,10 +12,17 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Username"
+        android:textColor="@color/c4"
+        android:textColorHint="@color/c4_transparent"
+        android:background="@drawable/edit_text_background"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
         android:maxLength="24"
         app:layout_constraintBottom_toTopOf="@+id/etEmail2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"/>
 
     <EditText
         android:id="@+id/etEmail2"
@@ -24,9 +31,16 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         android:hint="Email"
+        android:textColor="@color/c4"
+        android:textColorHint="@color/c4_transparent"
+        android:background="@drawable/edit_text_background"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/etPassword2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"/>
 
     <EditText
         android:id="@+id/etPassword2"
@@ -35,10 +49,17 @@
         android:ems="10"
         android:inputType="textPassword"
         android:hint="Password"
+        android:textColor="@color/c4"
+        android:textColorHint="@color/c4_transparent"
+        android:background="@drawable/edit_text_background"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
         android:maxLength="16"
         app:layout_constraintBottom_toTopOf="@+id/etConfirmPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="10dp"/>
 
     <EditText
         android:id="@+id/etConfirmPassword"
@@ -47,16 +68,25 @@
         android:ems="10"
         android:inputType="textPassword"
         android:hint="Confirm Password"
+        android:textColor="@color/c4"
+        android:textColorHint="@color/c4_transparent"
+        android:background="@drawable/edit_text_background"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:gravity="center"
         android:maxLength="16"
         app:layout_constraintBottom_toTopOf="@+id/btRegister2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="20dp"/>
 
     <Button
         android:id="@+id/btRegister2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
+        android:textColor="@color/c4"
+        android:backgroundTint="@color/c2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
