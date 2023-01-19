@@ -20,7 +20,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentHomeBinding.bind(view)
 
-        val database = Firebase.database("https://musicapp-9c0d8-default-rtdb.europe-west1.firebasedatabase.app/")
+        val database = Firebase.database("https://musicapp-f92ec-default-rtdb.firebaseio.com/")
         val myRef = database.reference
 
         val musicArray = arrayListOf<MusicDataClass>()

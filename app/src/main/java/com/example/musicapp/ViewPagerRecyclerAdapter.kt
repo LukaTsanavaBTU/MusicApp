@@ -11,48 +11,39 @@ import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
-class MusicRecyclerAdapter(private val musicArray: ArrayList<MusicDataClass>) : RecyclerView.Adapter<MusicRecyclerAdapter.ViewHolder> () {
+class ViewPagerRecyclerAdapter(private val musicArray: ArrayList<MusicDataClass>) : RecyclerView.Adapter<ViewPagerRecyclerAdapter.ViewHolder> () {
 
     private val storageRef = Firebase.storage.reference
-    private lateinit var mRecyclerView: RecyclerView
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
-        val rvSongArt: ImageView = view.findViewById(R.id.rvSongArt)
-        val rvSongUploader: TextView = view.findViewById(R.id.rvSongUploader)
-        val rvSongTitle: TextView = view.findViewById(R.id.rvSongTitle)
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val vpCover: ImageView = view.findViewById(R.id.vpCover)
+        val vpTitle: TextView = view.findViewById(R.id.vpTitle)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.music_viewer_item, parent, false)
+            .inflate(R.layout.viewpager_item, parent, false)
 
         return ViewHolder(view)
     }
 
-    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
-        super.onAttachedToRecyclerView(recyclerView)
-        mRecyclerView = recyclerView
-    }
-
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.rvSongTitle.text = musicArray[position].musicName
-        holder.rvSongUploader.text = musicArray[position].username
+        holder.vpTitle.text = musicArray[position].musicName
+
         storageRef.child(musicArray[position].imagePath).downloadUrl.addOnSuccessListener {
-            Glide.with(holder.rvSongArt.context).load(it).into(holder.rvSongArt)
+            Glide.with(holder.vpCover.context).load(it).into(holder.vpCover)
         }
+
         holder.itemView.setOnClickListener{
-            mRecyclerView.rootView.findViewById<ImageView>(R.id.viewDisableLayout).visibility = View.VISIBLE
             storageRef.child(musicArray[position].musicPath).downloadUrl.addOnSuccessListener {
                 val transferArray = arrayOf(musicArray[position].username, musicArray[position].uid, musicArray[position].musicPath, musicArray[position].imagePath, musicArray[position].musicName, it.toString())
-                val action = HomeFragmentDirections.actionHomeFragmentToMusicItemFragment(transferArray)
+                val action = ProfileFragmentDirections.actionProfileFragmentToMusicItemFragment(transferArray)
                 Navigation.findNavController(holder.itemView).navigate(action)
             }
 
         }
-
     }
 
     override fun getItemCount(): Int = musicArray.size
-
 
 }

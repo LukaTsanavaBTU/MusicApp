@@ -43,7 +43,7 @@ class ChangeProfilePictureFragment : Fragment(R.layout.fragment_change_profile_p
         binding = FragmentChangeProfilePictureBinding.bind(view)
 
         auth = Firebase.auth
-        val database = Firebase.database("https://musicapp-9c0d8-default-rtdb.europe-west1.firebasedatabase.app/")
+        val database = Firebase.database("https://musicapp-f92ec-default-rtdb.firebaseio.com/")
         val myRef = database.reference
         val storageRef = Firebase.storage.reference
 

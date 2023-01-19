@@ -51,7 +51,7 @@ class SetProfilePictureFragment : Fragment(R.layout.fragment_set_profile_picture
         binding = FragmentSetProfilePictureBinding.bind(view)
 
         auth = Firebase.auth
-        val database = Firebase.database("https://musicapp-9c0d8-default-rtdb.europe-west1.firebasedatabase.app/")
+        val database = Firebase.database("https://musicapp-f92ec-default-rtdb.firebaseio.com/")
         val myRef = database.reference
         var storageRef = Firebase.storage.reference
 

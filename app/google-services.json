@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "153018521619",
-    "project_id": "musicapp-9c0d8",
-    "storage_bucket": "musicapp-9c0d8.appspot.com"
+    "project_number": "603031459559",
+    "firebase_url": "https://musicapp-f92ec-default-rtdb.firebaseio.com",
+    "project_id": "musicapp-f92ec",
+    "storage_bucket": "musicapp-f92ec.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:153018521619:android:a5e1acfa26674e9f0407e6",
+        "mobilesdk_app_id": "1:603031459559:android:cebc7421659ec880b1b442",
         "android_client_info": {
           "package_name": "com.example.musicapp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "153018521619-tusdl6ds59ha75ki06o7j6n09uq4cuh6.apps.googleusercontent.com",
+          "client_id": "603031459559-2g93hrcil8gqrgu1335jdpqs6q9eislu.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCL0kI39lcLlCFiVBKrHTRs_JM2k6ljiBw"
+          "current_key": "AIzaSyBMoEd8Qaz8kceBrK1Ad99bhReBG4qn7Ng"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "153018521619-tusdl6ds59ha75ki06o7j6n09uq4cuh6.apps.googleusercontent.com",
+              "client_id": "603031459559-2g93hrcil8gqrgu1335jdpqs6q9eislu.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

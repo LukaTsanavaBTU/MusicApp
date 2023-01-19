@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp">
+    android:layout_margin="20dp"
+    android:background="@drawable/press_animation">
 
     <ImageView
         android:id="@+id/rvSongArt"
@@ -12,7 +13,7 @@
         android:layout_height="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/loading_transparent" />
+        tools:srcCompat="@drawable/loading_transparent"  />
 
     <TextView
         android:id="@+id/rvSongTitle"

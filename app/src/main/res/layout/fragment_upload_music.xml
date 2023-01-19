@@ -72,7 +72,7 @@
         android:inputType="textPersonName"
         android:hint="Music Name"
         android:textSize="20sp"
-        android:maxLength="30"
+        android:maxLength="40"
         android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
