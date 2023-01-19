@@ -28,7 +28,7 @@ class RecoverPasswordFragment : Fragment(R.layout.fragment_recover_password) {
                 Firebase.auth.sendPasswordResetEmail(binding.etEmail3.text.toString())
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(activity, "The Email Has Been Sent CUSTOM TOAST", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "An Email Has Been Sent", Toast.LENGTH_SHORT).show()
                             binding.etEmail3.text.clear()
                         }
                     }

@@ -90,14 +90,14 @@ class ChangeProfilePictureFragment : Fragment(R.layout.fragment_change_profile_p
 
                 val uploadTask = imageRef.putBytes(data)
                 uploadTask.addOnFailureListener {
-                    Toast.makeText(activity, "An Error Has Occurred, Try a Different Image (CUSTOM TOAST)", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "An Error Has Occurred, Try a Different Image", Toast.LENGTH_SHORT).show()
                 }
                 uploadTask.addOnSuccessListener {
                     myRef.child("users").child(auth.uid.toString()).child("profilePhoto").setValue("images/${auth.uid}.jpg")
-                    Toast.makeText(activity, "Successfully Changed Image (CUSTOM TOAST)", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "Successfully Changed Image", Toast.LENGTH_SHORT).show()
                     activity?.onBackPressed()
                 }
-            } else { Toast.makeText(activity, "Select An Image (CUSTOM TOAST)", Toast.LENGTH_SHORT).show() }
+            } else { Toast.makeText(activity, "Select An Image", Toast.LENGTH_SHORT).show() }
         }
 
         binding.tvCancel.setOnClickListener {

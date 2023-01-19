@@ -47,14 +47,14 @@ class ChangePasswordDialogFragment : DialogFragment() {
                                             if (task.isSuccessful) {
                                                 Toast.makeText(
                                                     context,
-                                                    "Password Successfully Changed (CUSTOM TOAST)",
+                                                    "Password Successfully Changed",
                                                     Toast.LENGTH_SHORT
                                                 ).show()
                                                 dismiss()
                                             } else {
                                                 Toast.makeText(
                                                     context,
-                                                    "Something Went Wrong, Try Again (CUSTOM TOAST)",
+                                                    "Something Went Wrong, Try Again",
                                                     Toast.LENGTH_SHORT
                                                 ).show()
                                                 dismiss()

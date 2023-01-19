@@ -80,7 +80,7 @@ class UploadMusicFragment : Fragment(R.layout.fragment_upload_music) {
 
         binding.btUpload.setOnClickListener {
             if (binding.tvChosenMp3.text.toString() == "MP3 File Not Chosen"){
-                Toast.makeText(activity, "Select An MP3 File (CUSTOM TOAST)", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "Select An MP3 File", Toast.LENGTH_SHORT).show()
             } else if (binding.etMusicName.text.toString().length < 4) {
                 binding.etMusicName.error = "Music Name Is Too Short"
             }
@@ -93,13 +93,13 @@ class UploadMusicFragment : Fragment(R.layout.fragment_upload_music) {
 
                 val uploadTaskImage = imageRef.putBytes(data)
                 uploadTaskImage.addOnFailureListener {
-                    Toast.makeText(activity, "An Error Has Occurred, Try a Different Image (CUSTOM TOAST)", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "An Error Has Occurred, Try a Different Image", Toast.LENGTH_SHORT).show()
                 }
                 uploadTaskImage.addOnSuccessListener {
                     val mp3Ref = storageRef.child("music/${binding.etMusicName.text.toString().replace("/", "")}.mp3")
                     val uploadTaskMp3 = mp3Ref.putFile(binding.tvChosenMp3.text.toString().toUri())
                     uploadTaskMp3.addOnFailureListener {
-                        Toast.makeText(activity, "An Error Has Occurred, Try a Different MP3 File (CUSTOM TOAST)", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(activity, "An Error Has Occurred, Try a Different MP3 File", Toast.LENGTH_SHORT).show()
                     }
                     uploadTaskMp3.addOnSuccessListener {
                         myRef.child("users").child("${auth.currentUser?.uid}").child("username").addValueEventListener ( object : ValueEventListener{
@@ -111,7 +111,7 @@ class UploadMusicFragment : Fragment(R.layout.fragment_upload_music) {
                                     "${binding.etMusicName.text}")
                                 myRef.child("music").push().setValue(uploadedMusicData)
                                 myRef.child("users").child(auth.currentUser?.uid.toString()).child("uploadedMusic").push().setValue(uploadedMusicData)
-                                Toast.makeText(activity, "Uploaded Successfully (CUSTOM TOAST)", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(activity, "Uploaded Successfully", Toast.LENGTH_SHORT).show()
                                 activity?.onBackPressed()
                             }
                             override fun onCancelled(error: DatabaseError) {

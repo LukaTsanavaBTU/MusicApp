@@ -42,9 +42,8 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
                             if (task.isSuccessful) {
                                 val newUser = UserInfoDataClass(binding.etUsername.text.toString(), binding.etEmail2.text.toString(), auth.uid.toString(), "images/default.jpg")
                                 myRef.child("users").child(auth.uid.toString()).setValue(newUser)
-                                Toast.makeText(activity, "Move To Image Select Or App", Toast.LENGTH_SHORT).show()
                                 Navigation.findNavController(view).navigate(R.id.action_registrationFragment_to_setProfilePictureFragment)
-                            } else { Toast.makeText(activity, "This User Already Exists (CUSTOM TOAST)", Toast.LENGTH_SHORT).show() }
+                            } else { Toast.makeText(activity, "This User Already Exists", Toast.LENGTH_SHORT).show() }
                         }
                 }
         }

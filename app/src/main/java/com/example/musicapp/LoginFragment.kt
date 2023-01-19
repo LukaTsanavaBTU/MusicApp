@@ -42,7 +42,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                             startActivity(intent)
                             activity?.finish()
                         } else {
-                            Toast.makeText(activity, "Incorrect Credentials (CUSTOM TOAST)", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "Incorrect Credentials", Toast.LENGTH_SHORT).show()
                         }
                     }
             }

@@ -57,8 +57,6 @@ class SetProfilePictureFragment : Fragment(R.layout.fragment_set_profile_picture
 
 
 
-        //make placeholder image and draw it onto imageview !!!
-
         Glide.with(this)
             .load(R.drawable.defaultprofile)
             .circleCrop()
@@ -81,8 +79,6 @@ class SetProfilePictureFragment : Fragment(R.layout.fragment_set_profile_picture
                 }
             }
 
-        // set up cloud storage authentication rules
-
 
         binding.btConfirm.setOnClickListener {
             if (binding.ivUserProfilePicture.drawable != null && imageSet) {
@@ -94,7 +90,7 @@ class SetProfilePictureFragment : Fragment(R.layout.fragment_set_profile_picture
 
                 var uploadTask = imageRef.putBytes(data)
                 uploadTask.addOnFailureListener {
-                    Toast.makeText(activity, "An Error Has Occurred, Try a Different Image (CUSTOM TOAST)", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "An Error Has Occurred, Try a Different Image", Toast.LENGTH_SHORT).show()
                 }
                 uploadTask.addOnSuccessListener {
                     myRef.child("users").child(auth.uid.toString()).child("profilePhoto").setValue("images/${auth.uid}.jpg")
@@ -102,7 +98,7 @@ class SetProfilePictureFragment : Fragment(R.layout.fragment_set_profile_picture
                     startActivity(intent)
                     activity?.finish()
                 }
-            } else { Toast.makeText(activity, "Select An Image (CUSTOM TOAST)", Toast.LENGTH_SHORT).show() }
+            } else { Toast.makeText(activity, "Select An Image", Toast.LENGTH_SHORT).show() }
         }
 
         binding.tvSkip.setOnClickListener {
