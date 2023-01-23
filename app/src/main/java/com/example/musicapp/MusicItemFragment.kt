@@ -115,10 +115,34 @@ class MusicItemFragment : Fragment(R.layout.fragment_music_item) {
 
             })
 
+            val audioManager = requireActivity().getSystemService(AUDIO_SERVICE) as AudioManager
+
+            val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+            volumeSeekBar.max = maxVolume
+
+            val currVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+            volumeSeekBar.progress = currVolume
+
+            volumeSeekBar.progress = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
+
+            volumeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+                override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, p1,0)
+                }
+
+                override fun onStartTrackingTouch(p0: SeekBar?) {
+                }
+
+                override fun onStopTrackingTouch(p0: SeekBar?) {
+                }
+            })
+
             runnable = Runnable {
 
                 seekbar.progress = mediaPlayer.currentPosition
                 handler.postDelayed(runnable,0)
+
+                volumeSeekBar.progress = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
 
                 if (volumeSeekBar.progress > volumeSeekBar.max / 2){
                     highVolumeImage.setBackgroundResource(R.drawable.ic_baseline_volume_up_24)
@@ -147,30 +171,6 @@ class MusicItemFragment : Fragment(R.layout.fragment_music_item) {
 
             }
 
-
-
-
-        val audioManager = requireActivity().getSystemService(AUDIO_SERVICE) as AudioManager
-
-        val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
-        volumeSeekBar.max = maxVolume
-
-        val currVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-        volumeSeekBar.progress = currVolume
-
-        volumeSeekBar.progress = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
-
-        volumeSeekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
-            override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
-                audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, p1,0)
-            }
-
-            override fun onStartTrackingTouch(p0: SeekBar?) {
-            }
-
-            override fun onStopTrackingTouch(p0: SeekBar?) {
-            }
-        })
     }
 
     override fun onDestroy() {

@@ -9,84 +9,96 @@
         android:id="@+id/ivCoverArt"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:src="@drawable/music_placeholder"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.1"
-        android:src="@drawable/music_placeholder" />
+        app:layout_constraintVertical_bias="0.1" />
 
 
     <Button
-        android:id="@+id/btChoosePicture"
+        android:id="@+id/btCheckLink"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Choose Picture"
-        android:textColor="@color/c4"
         android:backgroundTint="@color/c2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivCoverArt" />
-
-    <TextView
-        android:id="@+id/tvChosenMp3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="14"
-        android:maxLines="1"
-        android:gravity="center"
-        android:text="MP3 File Not Chosen"
-        android:textSize="20sp"
-        app:autoSizeTextType="uniform"
-        app:autoSizeMinTextSize="4sp"
-        app:autoSizeMaxTextSize="20sp"
-        app:autoSizeStepGranularity="2sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="30dp"
-        app:layout_constraintTop_toBottomOf="@+id/btChoosePicture" />
-
-    <Button
-        android:id="@+id/btChooseFile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose File"
+        android:text="See Thumbnail"
         android:textColor="@color/c4"
-        android:backgroundTint="@color/c2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvChosenMp3" />
+        app:layout_constraintTop_toBottomOf="@+id/etMusicLink"
+        android:layout_marginTop="10dp"/>
 
     <Button
         android:id="@+id/btUpload"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:backgroundTint="@color/c2"
         android:text="Upload"
         android:textColor="@color/c4"
-        android:backgroundTint="@color/c2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etMusicName" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <EditText
+        android:id="@+id/etMusicLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_text_background"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Youtube Link"
+        android:inputType="textPersonName"
+        android:padding='5dp'
+        android:textColor="@color/c4"
+        android:textColorHint="@color/c4_transparent"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivCoverArt" />
 
     <EditText
         android:id="@+id/etMusicName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/edit_text_background"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:gravity="center"
         android:hint="Music Name"
+        android:inputType="textPersonName"
+        android:maxLength="40"
+        android:padding='5dp'
         android:textColor="@color/c4"
         android:textColorHint="@color/c4_transparent"
-        android:background="@drawable/edit_text_background"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
         android:textSize="20sp"
-        android:maxLength="40"
-        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btChooseFile" />
+        app:layout_constraintTop_toBottomOf="@+id/btCheckLink" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etMusicName">
+
+        <CheckBox
+            android:id="@+id/cbPrivate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:buttonTint="@color/c4"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make Private" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
