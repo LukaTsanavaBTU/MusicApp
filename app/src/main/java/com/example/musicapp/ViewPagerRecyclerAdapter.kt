@@ -1,5 +1,6 @@
 package com.example.musicapp
 
+import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,13 +8,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import at.huber.youtubeExtractor.VideoMeta
+import at.huber.youtubeExtractor.YouTubeExtractor
+import at.huber.youtubeExtractor.YtFile
 import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
 class ViewPagerRecyclerAdapter(private val musicArray: ArrayList<MusicDataClass>) : RecyclerView.Adapter<ViewPagerRecyclerAdapter.ViewHolder> () {
-
-    private val storageRef = Firebase.storage.reference
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val vpCover: ImageView = view.findViewById(R.id.vpCover)
@@ -29,19 +31,22 @@ class ViewPagerRecyclerAdapter(private val musicArray: ArrayList<MusicDataClass>
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.vpTitle.text = musicArray[position].musicName
-
-        storageRef.child(musicArray[position].imagePath).downloadUrl.addOnSuccessListener {
-            Glide.with(holder.vpCover.context).load(it).into(holder.vpCover)
-        }
-
+        Glide.with(holder.vpCover.context).load(musicArray[position].imagePath).centerCrop().into(holder.vpCover)
         holder.itemView.setOnClickListener{
-            storageRef.child(musicArray[position].musicPath).downloadUrl.addOnSuccessListener {
-                val transferArray = arrayOf(musicArray[position].username, musicArray[position].uid, musicArray[position].musicPath, musicArray[position].imagePath, musicArray[position].musicName, it.toString())
-                val action = ProfileFragmentDirections.actionProfileFragmentToMusicItemFragment(transferArray)
-                Navigation.findNavController(holder.itemView).navigate(action)
-            }
-
+            object : YouTubeExtractor(holder.vpCover.context) {
+                override fun onExtractionComplete(ytFiles: SparseArray<YtFile>?, vMeta: VideoMeta?) {
+                    if (ytFiles != null) {
+                        val itag = 251
+                        val downloadUrl = ytFiles[itag].url
+                        val transferArray = arrayOf(musicArray[holder.adapterPosition].username, musicArray[holder.adapterPosition].uid, downloadUrl, musicArray[holder.adapterPosition].imagePath, musicArray[holder.adapterPosition].musicName)
+                        val action = ProfileFragmentDirections.actionProfileFragmentToMusicItemFragment(transferArray)
+                        Navigation.findNavController(holder.itemView).navigate(action)
+                    }
+                }
+            }.extract(musicArray[position].musicPath)
         }
+
+
     }
 
     override fun getItemCount(): Int = musicArray.size

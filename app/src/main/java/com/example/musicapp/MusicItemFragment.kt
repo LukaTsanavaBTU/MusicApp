@@ -7,18 +7,17 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.SeekBar
 import android.widget.TextView
 import androidx.core.net.toUri
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.musicapp.databinding.FragmentMusicItemBinding
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MusicItemFragment : Fragment(R.layout.fragment_music_item) {
 
@@ -28,7 +27,6 @@ class MusicItemFragment : Fragment(R.layout.fragment_music_item) {
 
     private lateinit var binding: FragmentMusicItemBinding
     private val args: MusicItemFragmentArgs  by navArgs()
-    private val storageRef = Firebase.storage.reference
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,8 +37,6 @@ class MusicItemFragment : Fragment(R.layout.fragment_music_item) {
         val musicPath = args.musicArrayTransfer[2]
         val imagePath = args.musicArrayTransfer[3]
         val musicName = args.musicArrayTransfer[4]
-        val musicUri = args.musicArrayTransfer[5].toUri()
-
 
         val textViewUsername: TextView = view.findViewById(R.id.textViewUsername)
         val seekbar: SeekBar = view.findViewById(R.id.seekbar)
@@ -56,15 +52,14 @@ class MusicItemFragment : Fragment(R.layout.fragment_music_item) {
         val volumeSeekBar: SeekBar = view.findViewById(R.id.seekBar)
         val highVolumeImage: ImageView = view.findViewById(R.id.imageView3)
 
+        activity?.findViewById<BottomNavigationView>(R.id.bnmBottomNavMenu)?.isVisible = false
 
-        storageRef.child(imagePath).downloadUrl.addOnSuccessListener {
-            Glide.with(this).load(it).into(photo)
-        }
+        Glide.with(this).load(imagePath).centerCrop().into(photo)
 
         name.text = musicName
         textViewUsername.text = username
 
-            mediaPlayer = MediaPlayer.create(activity, musicUri)
+            mediaPlayer = MediaPlayer.create(activity, musicPath.toUri())
 
             seekbar.progress = 0
             seekbar.max = mediaPlayer.duration
@@ -175,6 +170,7 @@ class MusicItemFragment : Fragment(R.layout.fragment_music_item) {
 
     override fun onDestroy() {
         super.onDestroy()
+        activity?.findViewById<BottomNavigationView>(R.id.bnmBottomNavMenu)?.isVisible = true
         mediaPlayer.stop()
     }
 }

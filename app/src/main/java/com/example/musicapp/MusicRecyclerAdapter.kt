@@ -1,12 +1,17 @@
 package com.example.musicapp
 
+import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import at.huber.youtubeExtractor.VideoMeta
+import at.huber.youtubeExtractor.YouTubeExtractor
+import at.huber.youtubeExtractor.YtFile
 import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
@@ -37,17 +42,21 @@ class MusicRecyclerAdapter(private val musicArray: ArrayList<MusicDataClass>) : 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.rvSongTitle.text = musicArray[position].musicName
         holder.rvSongUploader.text = musicArray[position].username
-        storageRef.child(musicArray[position].imagePath).downloadUrl.addOnSuccessListener {
-            Glide.with(holder.rvSongArt.context).load(it).into(holder.rvSongArt)
-        }
+        Glide.with(holder.rvSongArt.context).load(musicArray[position].imagePath).centerCrop().into(holder.rvSongArt)
         holder.itemView.setOnClickListener{
+            mRecyclerView.isEnabled = false
             mRecyclerView.rootView.findViewById<ImageView>(R.id.viewDisableLayout).visibility = View.VISIBLE
-            storageRef.child(musicArray[position].musicPath).downloadUrl.addOnSuccessListener {
-                val transferArray = arrayOf(musicArray[position].username, musicArray[position].uid, musicArray[position].musicPath, musicArray[position].imagePath, musicArray[position].musicName, it.toString())
-                val action = HomeFragmentDirections.actionHomeFragmentToMusicItemFragment(transferArray)
-                Navigation.findNavController(holder.itemView).navigate(action)
-            }
-
+            object : YouTubeExtractor(holder.rvSongArt.context) {
+                override fun onExtractionComplete(ytFiles: SparseArray<YtFile>?, vMeta: VideoMeta?) {
+                    if (ytFiles != null) {
+                        val itag = 251
+                        val downloadUrl = ytFiles[itag].url
+                        val transferArray = arrayOf(musicArray[holder.adapterPosition].username, musicArray[holder.adapterPosition].uid, downloadUrl, musicArray[holder.adapterPosition].imagePath, musicArray[holder.adapterPosition].musicName)
+                        val action = HomeFragmentDirections.actionHomeFragmentToMusicItemFragment(transferArray)
+                        Navigation.findNavController(holder.itemView).navigate(action)
+                    }
+                }
+            }.extract(musicArray[position].musicPath)
         }
 
     }
