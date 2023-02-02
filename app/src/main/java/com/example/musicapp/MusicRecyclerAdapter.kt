@@ -6,19 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import at.huber.youtubeExtractor.VideoMeta
 import at.huber.youtubeExtractor.YouTubeExtractor
 import at.huber.youtubeExtractor.YtFile
 import com.bumptech.glide.Glide
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 
 class MusicRecyclerAdapter(private val musicArray: ArrayList<MusicDataClass>) : RecyclerView.Adapter<MusicRecyclerAdapter.ViewHolder> () {
 
-    private val storageRef = Firebase.storage.reference
     private lateinit var mRecyclerView: RecyclerView
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view){

@@ -12,10 +12,10 @@ import at.huber.youtubeExtractor.VideoMeta
 import at.huber.youtubeExtractor.YouTubeExtractor
 import at.huber.youtubeExtractor.YtFile
 import com.bumptech.glide.Glide
-import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 
 class ViewPagerRecyclerAdapter(private val musicArray: ArrayList<MusicDataClass>) : RecyclerView.Adapter<ViewPagerRecyclerAdapter.ViewHolder> () {
+
+    private lateinit var mRecyclerView: RecyclerView
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val vpCover: ImageView = view.findViewById(R.id.vpCover)
@@ -29,10 +29,17 @@ class ViewPagerRecyclerAdapter(private val musicArray: ArrayList<MusicDataClass>
         return ViewHolder(view)
     }
 
+    override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+        super.onAttachedToRecyclerView(recyclerView)
+        mRecyclerView = recyclerView
+    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.vpTitle.text = musicArray[position].musicName
         Glide.with(holder.vpCover.context).load(musicArray[position].imagePath).centerCrop().into(holder.vpCover)
         holder.itemView.setOnClickListener{
+            holder.itemView.isClickable = false
+            mRecyclerView.rootView.findViewById<ImageView>(R.id.viewDisableLayout).visibility = View.VISIBLE
             object : YouTubeExtractor(holder.vpCover.context) {
                 override fun onExtractionComplete(ytFiles: SparseArray<YtFile>?, vMeta: VideoMeta?) {
                     if (ytFiles != null) {
